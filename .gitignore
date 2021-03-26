@@ -3,3 +3,4 @@ test/
 metadata/
 .ipynb_checkpoints/
 __pycache__/
+referencePublicNotebooks/
