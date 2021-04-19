@@ -5,3 +5,4 @@ metadata/
 __pycache__/
 referencePublicNotebooks/
 modelSaveDir/
+dask-worker-space/
