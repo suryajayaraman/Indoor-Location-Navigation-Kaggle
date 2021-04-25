@@ -6,3 +6,4 @@ __pycache__/
 referencePublicNotebooks/
 modelSaveDir/
 dask-worker-space/
+competitionGithubRepo/
