@@ -11,8 +11,7 @@ def skew_symmetric(v):
     return np.array(
         [[0, -v[2], v[1]],
          [v[2], 0, -v[0]],
-         [-v[1], v[0], 0]]
-    )
+         [-v[1], v[0], 0]], dtype=np.float64)
 
 class Quaternion():
     def __init__(self, w=1., x=0., y=0., z=0., axis_angle=None, euler=None):
@@ -78,15 +77,15 @@ class Quaternion():
 
     def to_mat(self):
         v = np.array([self.x, self.y, self.z]).reshape(3,1)
-        return (self.w ** 2 - np.dot(v.T, v)) * np.eye(3) + \
-               2 * np.dot(v, v.T) + 2 * self.w * skew_symmetric(v)
+        return np.array((self.w ** 2 - np.dot(v.T, v)) * np.eye(3) + \
+               2 * np.dot(v, v.T) + 2 * self.w * skew_symmetric(v), dtype=np.float64)
 
     def to_euler(self):
         """ Return as xyz (roll pitch yaw) Euler angles, with a static frame """
         roll = np.arctan2(2 * (self.w * self.x + self.y * self.z), 1 - 2 * (self.x**2 + self.y**2))
         pitch = np.arcsin(2 * (self.w * self.y - self.z * self.x))
         yaw = np.arctan2(2 * (self.w * self.z + self.x * self.y), 1 - 2 * (self.y**2 + self.z**2))
-        return np.array([roll, pitch, yaw])
+        return np.array([roll, pitch, yaw], dtype=np.float64)
 
     def to_numpy(self):
         """ Return numpy wxyz representation. """
